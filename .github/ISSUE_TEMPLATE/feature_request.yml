@@ -1,0 +1,22 @@
+# Copyright 2026 CodeMushroom
+# SPDX-License-Identifier: Apache-2.0
+name: Feature request
+description: Suggest something Pixolotl should do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The design task or workflow, rather than a specific solution.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+  - type: textarea
+    id: today
+    attributes:
+      label: How do you handle it today?
+      description: Another application, a workaround, or a step you skip.

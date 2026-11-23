@@ -1,0 +1,34 @@
+Pixolotl
+Copyright 2026 CodeMushroom
+
+This product was created by CodeMushroom (https://www.codemushroom.com).
+
+Licensed under the Apache License, Version 2.0. See the LICENSE file.
+Redistributions, including modified and commercial ones, must retain this
+NOTICE file and the copyright and attribution notices it contains.
+
+Third-party fonts
+
+The interface is drawn with fonts bundled by the egui library
+(https://github.com/emilk/egui), each under its own license:
+
+- Ubuntu Light: Ubuntu Font Licence 1.0.
+- Noto Emoji: SIL Open Font License 1.1.
+- Hack: MIT License, with Bitstream Vera License terms for parts of the design.
+- emoji-icon-font: MIT License.
+
+These licenses cover the fonts only. The full license texts are distributed
+with egui and must accompany any distribution of Pixolotl that includes the
+fonts.
+
+The default font for new text is Inter 4.1 (https://github.com/rsms/inter),
+Copyright (c) 2016 The Inter Project Authors, bundled in the application in
+four styles (Regular, Italic, Bold, Bold Italic) under the SIL Open Font
+License 1.1. Its full license text is crates/app/assets/fonts/Inter-LICENSE.txt
+and must accompany any distribution of Pixolotl that includes the font.
+
+Trademarks
+
+"Pixolotl", "CodeMushroom" and the Pixolotl axolotl logo are trademarks of
+CodeMushroom and are not licensed under the Apache License. See
+https://github.com/CodeMushroom/Pixolotl/blob/main/TRADEMARKS.md.

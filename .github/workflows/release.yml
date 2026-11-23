@@ -1,0 +1,189 @@
+# Copyright 2026 CodeMushroom
+# SPDX-License-Identifier: Apache-2.0
+name: release
+
+# Publishes a release from files pushed to a temporary branch.
+#
+# Pixolotl is built and signed on the owner's machine (scripts/release-windows.sh
+# in the source repository). That script pushes this repository's content to
+# `main`, then a branch `release/v<version>` whose last commit adds `payload/`:
+#
+#   payload/Pixolotl-<version>-Windows-setup.exe
+#   payload/Pixolotl-<version>-Windows-setup.exe.sig
+#   payload/latest.json      the update manifest installed copies read
+#   payload/notes.md         the changelog section for this version
+#
+# This workflow checks them, creates the tag and the Release as a DRAFT, uploads
+# the files, checks the draft has every file at the right size, and only then
+# publishes it. Installed copies read "latest", so they never see a release whose
+# update manifest or installer is missing. The temporary branch is deleted at the
+# end, whatever happened; a failed run also deletes its draft, so the branch can
+# simply be pushed again.
+#
+# It uses only this run's own short-lived GITHUB_TOKEN. No secrets: the files
+# arrive signed, and the signing key never leaves the owner's machine.
+on:
+  push:
+    branches: ["release/v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  REPO: ${{ github.repository }}
+  API: https://api.github.com/repos/${{ github.repository }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the payload
+        id: v
+        run: |
+          set -euo pipefail
+          branch="${GITHUB_REF_NAME}"
+          v="${branch#release/v}"
+          if ! [[ "$v" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Branch $branch does not name a version x.y.z" >&2; exit 1
+          fi
+          setup="Pixolotl-$v-Windows-setup.exe"
+          for f in "$setup" "$setup.sig" latest.json notes.md; do
+            test -s "payload/$f" || { echo "payload/$f is missing or empty" >&2; exit 1; }
+          done
+          url="https://github.com/$REPO/releases/download/v$v/$setup"
+          jq -e --arg v "$v" '.version == $v' payload/latest.json > /dev/null \
+            || { echo "latest.json is not for version $v" >&2; exit 1; }
+          jq -e --arg u "$url" '.platforms["windows-x86_64"].url == $u' payload/latest.json > /dev/null \
+            || { echo "latest.json does not point at $url" >&2; exit 1; }
+          size=$(stat -c %s "payload/$setup")
+          jq -e --argjson s "$size" '.platforms["windows-x86_64"].size == $s' payload/latest.json > /dev/null \
+            || { echo "latest.json gives a size other than $size bytes" >&2; exit 1; }
+          jq -e --rawfile sig "payload/$setup.sig" '.platforms["windows-x86_64"].signature == $sig' payload/latest.json > /dev/null \
+            || { echo "latest.json does not carry the signature in $setup.sig" >&2; exit 1; }
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "setup=$setup" >> "$GITHUB_OUTPUT"
+
+      - name: Refuse an existing tag or an older version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          V: ${{ steps.v.outputs.version }}
+        run: |
+          set -euo pipefail
+          auth=(-H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json")
+          code=$(curl -sS -o /dev/null -w '%{http_code}' "${auth[@]}" "$API/git/ref/tags/v$V")
+          if [ "$code" = 200 ]; then echo "Tag v$V already exists" >&2; exit 1; fi
+          if [ "$code" != 404 ]; then echo "Could not look up tag v$V (HTTP $code)" >&2; exit 1; fi
+          code=$(curl -sS -o latest.out -w '%{http_code}' "${auth[@]}" "$API/releases/latest")
+          if [ "$code" = 404 ]; then echo "No release yet: $V is the first"; exit 0; fi
+          if [ "$code" != 200 ]; then echo "Could not read the latest release (HTTP $code)" >&2; exit 1; fi
+          latest=$(jq -r '.tag_name | ltrimstr("v")' latest.out)
+          # Newer means greater in the first of major, minor, patch that differs.
+          newer=$(awk -v a="$V" -v b="$latest" 'BEGIN {
+            split(a, x, "."); split(b, y, ".");
+            for (i = 1; i <= 3; i++) { if (x[i] + 0 > y[i] + 0) { print 1; exit } if (x[i] + 0 < y[i] + 0) { print 0; exit } }
+            print 0 }')
+          if [ "$newer" != 1 ]; then echo "$V is not newer than the latest release, $latest" >&2; exit 1; fi
+          echo "$V is newer than $latest"
+
+      - name: Create the draft release
+        id: draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          V: ${{ steps.v.outputs.version }}
+          SETUP: ${{ steps.v.outputs.setup }}
+        run: |
+          set -euo pipefail
+          B="https://github.com/$REPO/releases/download/v$V"
+          {
+            echo "## What's new in $V"
+            echo
+            cat payload/notes.md
+            cat <<EOF
+
+          ## Download
+
+          | Your computer | Download |
+          | --- | --- |
+          | **Windows** 10 or 11, 64-bit | [$SETUP]($B/$SETUP) |
+
+          macOS and Linux versions are not available yet.
+
+          **You can ignore everything else in the list below.** The \`.sig\` and \`latest.json\` files are used by Pixolotl's built-in updater, and the "Source code" archives hold only this repository's README and notices.
+
+          First launch shows a security warning because the installer is not yet signed with a Windows certificate. Choose **More info → Run anyway**.
+
+          Pixolotl is made by CodeMushroom and is licensed under the Apache License 2.0.
+          EOF
+          } > body.md
+          jq -n --arg tag "v$V" --arg name "Pixolotl $V" --rawfile body body.md \
+            '{tag_name: $tag, name: $name, body: $body, draft: true, target_commitish: "main"}' > payload.json
+          id=$(curl -sS --fail-with-body -X POST "$API/releases" \
+            -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" -d @payload.json | jq -r .id)
+          test -n "$id" && test "$id" != "null"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+
+      - name: Upload the files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: ${{ steps.draft.outputs.id }}
+          SETUP: ${{ steps.v.outputs.setup }}
+        run: |
+          set -euo pipefail
+          for f in "$SETUP" "$SETUP.sig" latest.json; do
+            curl -sS --fail-with-body -X POST \
+              "https://uploads.github.com/repos/$REPO/releases/$ID/assets?name=$f" \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              -H "Content-Type: application/octet-stream" --data-binary "@payload/$f" | jq -r '"uploaded \(.name) (\(.size) bytes)"'
+          done
+
+      - name: Check the draft has every file
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: ${{ steps.draft.outputs.id }}
+          SETUP: ${{ steps.v.outputs.setup }}
+        run: |
+          set -euo pipefail
+          curl -sS --fail-with-body -H "Authorization: Bearer $GH_TOKEN" "$API/releases/$ID/assets?per_page=100" > assets.json
+          for f in "$SETUP" "$SETUP.sig" latest.json; do
+            want=$(stat -c %s "payload/$f")
+            got=$(jq -r --arg n "$f" '.[] | select(.name == $n and .state == "uploaded") | .size' assets.json)
+            [ "$got" = "$want" ] || { echo "$f: the draft has '${got:-nothing}', expected $want bytes" >&2; exit 1; }
+            echo "ok $f ($want bytes)"
+          done
+          url=$(jq -r '.[] | select(.name == "latest.json") | .url' assets.json)
+          curl -sS --fail-with-body -L -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/octet-stream" "$url" > uploaded-latest.json
+          cmp uploaded-latest.json payload/latest.json
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: ${{ steps.draft.outputs.id }}
+        run: |
+          set -euo pipefail
+          curl -sS --fail-with-body -X PATCH "$API/releases/$ID" \
+            -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            -d '{"draft": false, "make_latest": "true"}' | jq -r '"published \(.tag_name): \(.html_url)"'
+
+      - name: Delete the draft after a failure
+        if: failure() && steps.draft.outputs.id != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: ${{ steps.draft.outputs.id }}
+        run: |
+          curl -sS -X DELETE "$API/releases/$ID" -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json"
+          echo "Deleted the draft release; push the branch again once fixed."
+
+      - name: Delete the temporary branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X DELETE "$API/git/refs/heads/$GITHUB_REF_NAME" \
+            -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json"
+          echo "Deleted $GITHUB_REF_NAME"

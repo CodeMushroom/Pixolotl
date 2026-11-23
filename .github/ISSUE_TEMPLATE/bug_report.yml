@@ -1,0 +1,47 @@
+# Copyright 2026 CodeMushroom
+# SPDX-License-Identifier: Apache-2.0
+name: Bug report
+description: Something in Pixolotl is broken or behaves unexpectedly
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a document with…
+        2. Choose the … tool and…
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Pixolotl version
+      description: Shown in Help > About Pixolotl.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11 24H2"
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Graphics card and pen tablet
+      description: If the problem is about drawing, the canvas, or a pen.
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Error messages, screenshots, or a small file that shows the problem. Please remove anything private first.
