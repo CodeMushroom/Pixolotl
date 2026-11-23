@@ -3,6 +3,30 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.1.1
+
+Fixes for the first things a tester found, and a way to tell us what goes wrong.
+
+- **Direct Selection now works on shapes.** Rectangles, ellipses, polygons, stars and lines show their
+  anchor points as soon as you select or hover them, and you can drag anchors, handles and segments
+  straight away. Before, the tool ignored every shape made with the shape tools.
+- **The pointer no longer lags or doubles.** Tool pointers (Direct Selection, Pen, Lasso, Type and others)
+  are now real system cursors. Before, they were drawn a frame late and a second arrow could appear
+  beside them after a click.
+- **Pen tablets:** hovering with a pen now moves highlights and the pointer; before, they only moved on a
+  press.
+- **The Pen, Scissors, Pencil and anchor tools work on shapes too**, and Direct Selection and the Lasso can
+  select text, images and pixel layers.
+- **Tools say why nothing happened.** Clicking a locked object, or using a tool on something it cannot
+  edit, now explains what to do in the status bar.
+- **Snapping shows what it snapped to** ("anchor", "edge", "guide" and so on), and pulls a little less
+  eagerly.
+- **Anchors and handles are as easy to hit as they look** at every text size.
+- **Help > Send Feedback.** Write what happened and save a report with a screenshot of the Pixolotl
+  window, details of your computer, and your last actions, each of which you can leave out. You can see
+  exactly what the report contains. Nothing is sent on its own. In this version the report is saved as a
+  file for you to pass on.
+
 ## 0.1.0
 
 The first test build of Pixolotl, for Windows only. It is an early build: much of the application works,

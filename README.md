@@ -100,8 +100,9 @@ Pixolotl checks for a new version when it starts, and whenever you choose **Help
 When there is one, it tells you what is new and offers **Install and Restart**. Nothing is downloaded or
 installed until you say so.
 
-- **The update check is the only network request Pixolotl makes.** It reads one public file from this
-  repository's latest release. Nothing about you, your computer or your documents is sent.
+- **The update check is the only network request Pixolotl makes on its own.** It reads one public file
+  from this repository's latest release. Nothing about you, your computer or your documents is sent.
+  The only other request is a feedback report, and only when you send one (see [Privacy](#privacy)).
 - **Every update is signed** by CodeMushroom and checked against a key built into Pixolotl before it is
   installed. A download that does not match is deleted.
 - To stop the check at start, untick **Check for updates when Pixolotl starts** in **Help → About
@@ -109,11 +110,40 @@ installed until you say so.
 
 ## Feedback
 
-Found a bug or want a feature? [Open an issue](https://github.com/CodeMushroom/Pixolotl/issues/new/choose).
-Please say which version you have (Help → About Pixolotl) and what you did. If Pixolotl is useful to you,
+Found a bug or want a feature? Choose **Help → Send Feedback…** in Pixolotl: write what happened, choose
+what to include, and send it. Or [open an issue](https://github.com/CodeMushroom/Pixolotl/issues/new/choose),
+and say which version you have (Help → About Pixolotl) and what you did. If Pixolotl is useful to you,
 a ⭐ on this repository helps other designers find it.
 
 This repository holds Pixolotl's releases, release notes and issues.
+
+## Privacy
+
+Pixolotl has no account, no telemetry and no crash uploading. It sends nothing about you, your computer
+or your work unless you send a feedback report yourself.
+
+**Help → Send Feedback…** opens a window where you write a comment and tick what goes with it. Before
+anything leaves your computer, **View Report Details** shows exactly what will be sent. Nothing is sent
+until you press **Send**, and you can save the report as a file instead.
+
+- **Your comment**, and a name or email only if you type one.
+- **A screenshot of Pixolotl's window** (ticked; untick or remove it). Only Pixolotl's own window as it
+  was when you chose Send Feedback: never your desktop or other programs. You can mark spots on it.
+- **System and application details** (ticked): Pixolotl's version; your operating system's version,
+  processor, memory, displays and their scaling; graphics cards and drivers; how smoothly Pixolotl
+  was drawing; which pointing devices you used (mouse, touchpad, pen) and how their events arrived;
+  recent warnings and errors.
+- **Recent actions and tool state** (ticked): the last 60 tools, commands and clicks by name, the tool's
+  settings, and an outline of your document: how many objects of each kind and their sizes. No text,
+  no layer or file names, no paths.
+- **Your document** (not ticked): only if you tick it, so a problem can be reproduced. It contains your
+  artwork, its text and its names.
+
+Each report carries a random install ID, so several reports from you can be read together; it is made
+from nothing on your computer, and **Reset** in the window replaces it. Reports go over an encrypted
+connection to a server run by CodeMushroom and are stored privately for CodeMushroom to read; they are
+deleted after six months. The record of recent actions is kept only in memory while Pixolotl runs and
+is never written to disk.
 
 ---
 
