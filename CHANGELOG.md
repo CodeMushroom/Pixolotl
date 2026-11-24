@@ -3,6 +3,22 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.1.2
+
+- **Edit > Paste in Back (Ctrl+B)** pastes right behind the selection, in the same place it was copied
+  from, or at the back of the layer when nothing is selected.
+- **Object > Lock > Others (Ctrl+Alt+Shift+2)** and **Object > Hide > Others (Ctrl+Alt+Shift+3)** lock or
+  hide everything except what you have selected, in one step you can undo.
+- **Object > Path > Average… (Ctrl+Alt+J)** lines up the selected anchor points horizontally, vertically,
+  or moves them to one point, also on shapes.
+- **Delete a segment with Direct Selection.** Click a segment to select just that segment (it is drawn
+  thicker), Shift-click for more, then press Delete: the path opens there or splits in two.
+- **Tool tooltips name the tool the button shows.** A button that holds several tools now describes the one
+  it shows, with its key, and then how to open the others.
+- **The Selection tool shows the move pointer** over a selected object.
+- **The brush outline follows the pointer exactly.** For the painting tools, the outline of the brush is now
+  the system pointer itself, up to a large size, so it no longer trails behind when you move quickly.
+
 ## 0.1.1
 
 Fixes for the first things a tester found, and a way to tell us what goes wrong.
