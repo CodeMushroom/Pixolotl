@@ -3,6 +3,70 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.2.0
+
+Adjustments, filters, layer effects, retouching, Photoshop and GIMP files, and Image Trace.
+
+- **Adjustment layers.** Effect > New Adjustment Layer adds Levels, Curves, Hue/Saturation,
+  Brightness/Contrast, Color Balance, Black & White, Exposure, Vibrance, Selective Color, Channel Mixer,
+  Invert, Threshold, Gradient Map, or Shadows/Highlights above the selected layer, with a mask (made from
+  your selection, if you have one). Paint the mask to limit it; clip it to the layer below with one button.
+- **Adjustments, filters, and layer effects on any layer.** Effect > Adjustments, Blur, Sharpen, Noise, and
+  Layer Effects add them to the selected layer, shape, text, or group. They stay editable: turn each off
+  and on with its eye, drag it to change the order, delete it, or reset it. On a pixel layer, Apply makes
+  them part of the pixels.
+- **An editor for every adjustment**, in Properties: Levels and Curves over a histogram of the picture,
+  Hue/Saturation with its six color ranges, Color Balance, Selective Color, Channel Mixer, Gradient Map,
+  and the rest. The picture changes as you drag, and each drag is one step to undo.
+- **Layer Style.** Drop shadow, inner shadow, outer and inner glow, stroke, color and gradient overlay, and
+  bevel and emboss, with Photoshop's settings, in the Properties panel.
+- **Filters with a dialog.** Effect > Blur > Gaussian Blur…, Sharpen > Unsharp Mask…, and Noise > Add
+  Noise… show the filter live while you set it, and can change the pixels for good if you ask.
+- **Photoshop and GIMP files.** Open, place, or drop PSD, PSB, and XCF files, with their layers, groups,
+  masks, adjustment layers, and layer styles. If something could not be kept, the report says what, and
+  can open the file flattened instead.
+- **Export to Photoshop.** Choose PSD in the Export panel (or `--format psd` on the command line), with
+  adjustment layers kept editable or applied.
+- **SVG and PDF keep the look of effects.** Layers with adjustments, filters, or effects are written as
+  pictures, and the export report says which.
+- **Image Trace** (Object > Image Trace…) turns a picture into filled paths in black and white, gray
+  steps, or colors, with a live preview on the canvas. In gray and color, Ignore White leaves white areas
+  out, so they stay transparent.
+- **Import brushes** from Photoshop (ABR) and GIMP (GBR, GIH) brush files in the Brushes panel, or by
+  dropping the file on the window. They are kept for next time.
+- **Retouching tools**: the Spot Healing Brush, Healing Brush, and Patch tool (J), Dodge, Burn, and Sponge
+  (O), and Blur and Sharpen, in the Paintbrush button's group. Healing blends in the background with its
+  progress and a Cancel button in the status bar.
+- **Free Transform** (Edit > Free Transform, Ctrl+T with a pixel layer selected) for pixel layers and
+  selected pixels: drag the handles or type position, size, angle, and skew; Distort, Perspective, and
+  Warp with a mesh. Enter applies it as one step, Esc cancels.
+- **Select > Refine Edge…** refines a selection around hair and soft edges, with a live preview, into the
+  selection or a layer mask.
+- **Edit > Fill From Surroundings** replaces the selected pixels with texture from around them, in the
+  background.
+- **Copy, Paste, and Clear Layer Style** in the Effect menu and the Layers panel's context menu.
+- **Effect colors use the color picker.** Clicking a layer effect's color opens the color picker; a drag
+  in it is one step to undo.
+- The status bar says when the canvas shows a quick preview of a large blur while you drag.
+- **The selection's marching ants march again**, smoothly, as in Photoshop. They stop while the window
+  is minimized and while you paint.
+
+Known limits in this version:
+
+- A glow, shadow, or stroke that reaches more than about 100 pixels on screen takes several seconds to
+  draw the first time and after each zoom.
+- Dragging a layer effect setting in a document with twenty or more styled layers can drop slightly below
+  60 frames a second.
+- Layer effects blend inside their own layer, so a glow set to Screen can look different from Photoshop,
+  and the picture stored inside an exported PSD does not include effects (the layers do).
+- Very large blurs show a quick preview while you drag and take longer to finish.
+- Pixel layers in CMYK are not drawn yet.
+- While a selection is active, the marching ants use about a quarter of one processor core.
+- Image Trace can cut the sharp tips of thin spikes short and can lose lines thinner than about 1.5 pixels.
+- Fill opacity, pattern overlays, Satin, and smart object sources in Photoshop files are not kept; the
+  import report says so.
+- In this version a feedback report is still saved as a file for you to pass on.
+
 ## 0.1.2
 
 - **Edit > Paste in Back (Ctrl+B)** pastes right behind the selection, in the same place it was copied

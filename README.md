@@ -60,11 +60,20 @@ Clone Stamp, Paint Bucket and Gradient. The Brushes panel has pressure and tilt 
 
 ![The Clone Stamp copying the sun across a pixel layer](assets/pixels.png)
 
+### Adjust, retouch and style
+
+Adjustment layers (Levels, Curves, Hue/Saturation and eleven more) with masks, and adjustments, blurs,
+sharpening and noise on any layer, shape, text or group; all stay editable. Layer Style with drop and
+inner shadows, glows, stroke, overlays, and bevel and emboss. The Spot Healing Brush, Healing Brush and
+Patch tool, Dodge, Burn and Sponge, Free Transform with distort, perspective and warp, Refine Edge for
+hair and soft edges, and Fill From Surroundings. Image Trace turns a picture into paths.
+
 ### Open and export the files you use
 
-Opens SVG, PDF, Illustrator files saved with PDF content, PNG, JPEG, TIFF, WebP, and ASE, ACO and GPL
-swatches. Exports SVG, PDF for print (CMYK, spot colours, bleed, crop marks and a preflight check), PNG,
-JPEG, TIFF and WebP with a live preview and the exact file size. Every import tells you anything it could
+Opens SVG, PDF, Illustrator files saved with PDF content, Photoshop (PSD, PSB) and GIMP (XCF) files with
+their layers, masks, adjustment layers and layer styles, PNG, JPEG, TIFF, WebP, ASE, ACO and GPL swatches,
+and Photoshop and GIMP brushes. Exports SVG, PDF for print (CMYK, spot colours, bleed, crop marks and a
+preflight check), PSD, PNG, JPEG, TIFF and WebP with a live preview and the exact file size. Every import tells you anything it could
 not bring in. `pixolotl --export` converts files from the command line.
 
 ### Never lose work
@@ -74,8 +83,7 @@ Dark and light themes, and interface text from 100% to 200%.
 
 ## What is coming
 
-- Adjustments, filters, layer effects and retouching tools
-- Photoshop (PSD) and GIMP (XCF) files, and brush imports
+- More of Photoshop: fill opacity, pattern overlays, Satin, smart objects, and CMYK pixel layers
 - Live effects, symbols, and EPS and DXF export
 - Saved workspaces and preferences, a shortcut editor and a command palette
 - **macOS and Linux** versions
@@ -111,7 +119,8 @@ installed until you say so.
 ## Feedback
 
 Found a bug or want a feature? Choose **Help → Send Feedback…** in Pixolotl: write what happened, choose
-what to include, and send it. Or [open an issue](https://github.com/CodeMushroom/Pixolotl/issues/new/choose),
+what to include, and save the report (in this version it is saved as a file for you to attach; sending
+from the application comes later). Or [open an issue](https://github.com/CodeMushroom/Pixolotl/issues/new/choose),
 and say which version you have (Help → About Pixolotl) and what you did. If Pixolotl is useful to you,
 a ⭐ on this repository helps other designers find it.
 
