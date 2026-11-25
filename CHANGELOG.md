@@ -3,6 +3,117 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.3.0
+
+More of Photoshop: patterns, new adjustments and layer effects, CMYK pixel layers, and many selection,
+brush, and image commands.
+
+- **Posterize, Photo Filter, and Color Lookup.** Three more adjustments, as layers or on a layer: Posterize
+  (2 to 255 levels), Photo Filter (Photoshop's warming, cooling, and colored filters, or any color, with
+  Density and Preserve Luminosity), and Color Lookup (load a 3D LUT from a .cube file; the table is kept in
+  the document and offered to every other Color Lookup). They come in from Photoshop files and go back out.
+- **Channel eyes and targets.** In the Channels panel each color channel has an eye that shows or hides it
+  on the canvas (one channel alone shows as gray) and a brush that says whether painting, fills, and filters
+  change it. A CMYK layer's four inks are listed too.
+- Documents with Posterize, Photo Filter, Color Lookup, or channel targets need this version or later to
+  open (format version 13).
+- **Fill opacity.** Beside Opacity, Properties has Fill: it fades what a layer draws but not its layer
+  effects, so a shape at Fill 0 % shows only its stroke or shadow, as in Photoshop. Photoshop files keep
+  each layer's Fill both ways.
+- **Layer effects blend with what is below.** A Screen glow, a colored Multiply shadow, and effects on a
+  layer with its own blend mode now mix with the layers underneath, as Photoshop draws them.
+- **Satin, contours, noise, and Global Light.** The Layer Style list has Satin. Shadows, glows, bevels, and
+  satin have Photoshop's contours (Cone, Gaussian, Ring, and the rest), glows a Range, and shadows and glows
+  Noise. Use Global Light ties the angle of shadows and bevels to the document's light: turn one dial and
+  every effect that uses it follows. Contours and the light come in from Photoshop files and go back out.
+- **Wide effects stay fast.** A stroke or glow hundreds of pixels wide is drawn by the graphics card instead
+  of slowly by the processor.
+- **Effects in exported Photoshop files' preview.** The flattened picture of an exported PSD now shows the
+  layer effects, so programs that show only that picture show them too.
+- Documents with fill opacity, the global light, satin, contours, or noise need this version or later to
+  open (format version 11).
+- **More of Photoshop's Select menu.** Select > Reselect (Shift+Ctrl+D) brings back the selection you just
+  took away. Select > Modify > Border… turns a selection into a soft band along its edge, and Smooth… removes
+  specks and gaps and rounds corners. Select > Similar adds every pixel in the colors of the selected ones,
+  using the Magic Wand's tolerance.
+- **Fixed Ratio and Fixed Size marquees.** The marquees' toolbar has a Style: drag a shape of a set
+  proportion, or click to place a selection of an exact size in pixels.
+- **Duplicate brushes.** Duplicate any brush in the Brushes panel, the built-in ones included, to change or
+  rename your copy. Renaming a built-in brush saves a renamed copy and leaves the original as it is.
+- **An eyedropper and a preview in Color Range.** Click the canvas to pick the color to select; the dialog
+  shows what will be selected as you change the fuzziness. Add to Sample and Subtract from Sample (or
+  Shift-click and Alt-click) add more colors or take colors out.
+- **A press profile for CMYK.** New CMYK documents use the CGATS21 CRPC6 profile, now included with
+  Pixolotl. Documents you already have keep their own profile.
+- **Partly locked layers are marked.** A pixel layer with any of its three locks on shows a small lock in
+  the Layers panel; point at it to see which.
+- **Healing never gives up on a busy computer.** The Spot Healing Brush, the Healing Brush, the Patch tool,
+  and Fill From Surroundings no longer stop after a few seconds and throw the stroke away when the computer
+  is slow or busy: they take as long as they need, with the progress line and its Cancel button.
+- **The Spot Healing Brush keeps up with the pen.** Its darkened preview is drawn in the background, so
+  painting a large spot never makes the pen wait.
+- **Changing Warp's grid keeps your warp.** Choosing more or fewer rows and columns while warping keeps the
+  shape you dragged instead of starting again.
+- **Free Transform shows the layer mask.** While you warp or distort a layer with a mask, the preview shows
+  the mask bent with the layer, as the result will be.
+- **Image Size keeps masks, guides, and effects in step.** Layer masks are resampled with their layers,
+  guides move with the artwork, and with Scale Styles (on by default) layer effects grow and shrink with
+  the image.
+- **Faster brushes with color jitter.** Large brushes with color jitter, wet edges, and tapers keep up with
+  the pen.
+- **Layer locks.** A pixel layer's Properties have Photoshop's three locks: transparent pixels (painting,
+  fills, and filters change colors only), image pixels, and position. Documents saved by this version
+  need this version or later to open.
+- **Image Size and Canvas Size.** File > Image Size… (Ctrl+Alt+I) scales the artboards and everything on
+  them, resampling pixel layers with the method you choose; File > Canvas Size… (Ctrl+Alt+C) resizes the
+  artboard around an anchor without moving the artwork.
+- **Sample All Layers for the Paint Bucket.** The Paint Bucket can find the area to fill on every visible
+  layer at once and fill it on the selected layer, as the Magic Wand already could.
+- **Color jitter, wet edges, and tapered strokes.** The Brushes panel can vary each dab's hue, saturation,
+  and brightness or mix it toward the other color, paint with watercolor-like wet edges, and taper a stroke
+  at its start and end. Brushes you save keep these settings, and Photoshop brushes that use them import
+  with them.
+- **Magnetic Lasso.** A new lasso in the Lasso group snaps its outline to the edges in the picture as you
+  move along them, with Photoshop's Width, Contrast, and Frequency.
+- **Copied pixels reach other programs.** Copying pixels puts them on the system clipboard as a picture
+  other programs can paste, and a picture copied elsewhere afterwards pastes here as itself.
+- **Lighter marching ants.** A selection's marching ants move as smoothly as before and now use far less
+  processor time while they march.
+- **Pixel layers in CMYK documents.** A CMYK document's pixel layers are drawn in their inks, through the
+  document's CMYK profile like its shapes, with their masks, clipping, blend modes, adjustments, filters,
+  and adjustment layers. Paint them with the brushes, and lighten, darken, saturate, blur, or sharpen them
+  with Dodge, Burn, Sponge, Blur, and Sharpen.
+- **Selective Color's Black moves black ink.** In a CMYK document the Black sliders add or take away black
+  ink itself, and pure black counts among the blacks.
+- **Photoshop patterns.** Pattern fill layers, Pattern Overlay, and strokes filled with a pattern come in
+  from Photoshop files with the file's patterns, draw as Photoshop draws them, and go back out. Layer Style
+  has Pattern Overlay, with a menu of the document's patterns, Scale, Angle, Link with Layer, and Snap to
+  Origin.
+- **Gradient and pattern strokes.** A layer style's Stroke has Photoshop's Fill Type: a color, a gradient
+  across the layer, or a pattern.
+- **Scale Styles scales patterns too.** Image Size with Scale Styles scales a pattern overlay's and a
+  pattern stroke's scale with the image.
+- **Fill lines up with Opacity.** In Transparency, the Fill slider now starts where the Opacity slider does.
+- Documents with raster patterns, pattern overlays, or gradient and pattern strokes need this version or
+  later to open (format version 12).
+
+Known limits in this version:
+
+- A 1000-pixel brush with color jitter, wet edges, or tapers in a 16-bit document can lag slightly behind
+  the pen.
+- Panning at 100 % over a layer with a medium blur (about 20 pixels) can drop below 60 frames a second.
+- A glow, shadow, or stroke that reaches about 250 pixels takes a second or two to draw the first time.
+- Dragging a layer effect setting in a document with twenty or more styled layers can drop slightly below
+  60 frames a second.
+- Threshold, Black & White, Gradient Map, Exposure, Shadows/Highlights, and Color Lookup are not available
+  in CMYK documents, and the healing tools do not work on CMYK pixel layers.
+- Patterns come from Photoshop files only: there is no Define Pattern or pattern file import yet.
+- Noise and diamond gradients are still approximated, a layer with both a vector and a pixel mask gets a
+  group for the second mask, and smart object sources in Photoshop files are not kept.
+- Copying pixels to other programs has not been tested on every Windows setup.
+- Image Trace can still lose a thin light line drawn over a very different color.
+- In this version a feedback report is still saved as a file for you to pass on.
+
 ## 0.2.0
 
 Adjustments, filters, layer effects, retouching, Photoshop and GIMP files, and Image Trace.

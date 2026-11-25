@@ -36,9 +36,10 @@ save and open again.
 
 ### Colour for screen and print
 
-RGB, CMYK, grayscale, Lab and spot colours with ICC colour management. CMYK documents with soft proofing,
-gamut warning and overprint preview. Swatches, linear, radial and conic gradients edited on the canvas,
-patterns, blend modes, and opacity and clipping masks.
+RGB, CMYK, grayscale, Lab and spot colours with ICC colour management. CMYK documents with a press profile
+included, soft proofing, gamut warning and overprint preview; their pixel layers are kept and painted in
+ink. Swatches, linear, radial and conic gradients edited on the canvas, patterns, blend modes, and opacity
+and clipping masks.
 
 ![Editing a radial gradient on the canvas, with the Gradient panel showing its stops](assets/gradient.png)
 
@@ -52,9 +53,12 @@ Korean are shaped and laid out properly, and colour fonts work.
 
 ### Pixels in the same document
 
-Pixel layers sit next to vector layers. Select with marquees, lassos, the magic wand or colour range, refine
-with feather, grow, shrink and quick mask, and paint on layers and masks with the Brush, Eraser, Smudge,
-Clone Stamp, Paint Bucket and Gradient. The Brushes panel has pressure and tilt dynamics and a stabilizer.
+Pixel layers sit next to vector layers. Select with marquees (free, fixed ratio or fixed size), lassos, the
+Magnetic Lasso, the magic wand or colour range, refine with feather, grow, shrink, border, smooth and quick
+mask, and paint on layers and masks with the Brush, Eraser, Smudge, Clone Stamp, Paint Bucket and Gradient.
+The Brushes panel has pressure and tilt dynamics, colour jitter, wet edges, tapered strokes and a
+stabilizer. Image Size and Canvas Size, layer locks, channels you can show, hide and protect, and copy and
+paste of pixels with other programs.
 
 ![The Brushes panel editing a chalk brush over a painted landscape](assets/painting.png)
 
@@ -62,9 +66,12 @@ Clone Stamp, Paint Bucket and Gradient. The Brushes panel has pressure and tilt 
 
 ### Adjust, retouch and style
 
-Adjustment layers (Levels, Curves, Hue/Saturation and eleven more) with masks, and adjustments, blurs,
-sharpening and noise on any layer, shape, text or group; all stay editable. Layer Style with drop and
-inner shadows, glows, stroke, overlays, and bevel and emboss. The Spot Healing Brush, Healing Brush and
+Adjustment layers (Levels, Curves, Hue/Saturation, Posterize, Photo Filter, Colour Lookup with .cube
+tables and eleven more) with masks, and adjustments, blurs, sharpening and noise on any layer, shape, text
+or group; all stay editable. Layer Style with drop and inner shadows, glows, satin, colour, gradient and
+pattern overlays, bevel and emboss, and strokes filled with a colour, gradient or pattern, with contours,
+Global Light and a separate Fill opacity, blended with the layers below as Photoshop does. The Spot Healing
+Brush, Healing Brush and
 Patch tool, Dodge, Burn and Sponge, Free Transform with distort, perspective and warp, Refine Edge for
 hair and soft edges, and Fill From Surroundings. Image Trace turns a picture into paths.
 
@@ -83,7 +90,7 @@ Dark and light themes, and interface text from 100% to 200%.
 
 ## What is coming
 
-- More of Photoshop: fill opacity, pattern overlays, Satin, smart objects, and CMYK pixel layers
+- More of Photoshop: smart objects, a vector mask and a pixel mask on one layer, noise and diamond gradients
 - Live effects, symbols, and EPS and DXF export
 - Saved workspaces and preferences, a shortcut editor and a command palette
 - **macOS and Linux** versions

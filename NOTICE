@@ -27,6 +27,28 @@ four styles (Regular, Italic, Bold, Bold Italic) under the SIL Open Font
 License 1.1. Its full license text is crates/app/assets/fonts/Inter-LICENSE.txt
 and must accompany any distribution of Pixolotl that includes the font.
 
+Third-party color profile
+
+The default profile of new CMYK documents is CGATS21 CRPC6
+(CGATS21_CRPC6.icc, 3,462,316 bytes, SHA-256
+4ea462ebcc80e2376ebf4a72bd118d1ba92c638edcd718e3c051c3a185586063), bundled
+unmodified as published by the ICC profile registry
+(https://registry.color.org/profile-registry/profiles/CGATS21_CRPC6.icc) and
+kept in the source at crates/color/profiles/CGATS21_CRPC6.icc. It is not
+covered by the Apache License. Its copyright notice, as the profile itself
+states it:
+
+  Copyright X-Rite, Inc. This profile is made available by IDEAlliance,
+  with permission of X-Rite, Inc., and may be used, embedded, exchanged,
+  included in commercial software and shared without restriction.  It may
+  not be altered without written permission of IDEAlliance except for
+  single site use.
+
+The ICC profile registry states that the profile "may be used, embedded,
+exchanged, and shared without restriction" and "may not be altered, or sold
+without written permission of IDEAlliance". Documents that use it embed it
+unaltered.
+
 Trademarks
 
 "Pixolotl", "CodeMushroom" and the Pixolotl axolotl logo are trademarks of
