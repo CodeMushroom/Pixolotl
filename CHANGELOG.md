@@ -3,6 +3,21 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.3.2
+
+- **Panels that fold away, as in Illustrator.** The double arrow at the top of the panels (or Window >
+  Collapse Panels to Icons) folds them into a narrow column of icons and names. Click a row and its panel
+  opens beside the column; click it again or press Escape and it tucks away. Drag the column narrower for
+  icons only. Panels you open from the Window menu join the column.
+- **Workspaces.** Window > Workspace saves your panel layout under a name, switches between layouts, and
+  resets one to how you saved it. Your layout is remembered the next time you start Pixolotl.
+- **A selection box you can see on photos.** The box and its handles now have a dark and a light edge, so
+  they show over any picture. Before, the thin blue line could vanish on a photo.
+- **Image Trace no longer covers your artwork when its panel is hidden.** Its preview shows only while the
+  panel is in front.
+
+Known limits are those of 0.3.1. A panel opened from the column stays open when you click the canvas.
+
 ## 0.3.1
 
 - **Smooth panning over blurred layers again.** Panning at 100 % over a layer with a medium blur had

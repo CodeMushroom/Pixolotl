@@ -86,13 +86,14 @@ not bring in. `pixolotl --export` converts files from the command line.
 ### Never lose work
 
 Unlimited undo with a History panel, safe saving, and automatic recovery of unsaved work after a crash.
+Panels dock, float, and fold into a column of icons, and their layout saves as named workspaces.
 Dark and light themes, and interface text from 100% to 200%.
 
 ## What is coming
 
 - More of Photoshop: smart objects, a vector mask and a pixel mask on one layer, noise and diamond gradients
 - Live effects, symbols, and EPS and DXF export
-- Saved workspaces and preferences, a shortcut editor and a command palette
+- Preferences, a shortcut editor and a command palette
 - **macOS and Linux** versions
 
 The [changelog](CHANGELOG.md) lists what each version brings.
