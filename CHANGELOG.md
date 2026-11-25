@@ -3,6 +3,14 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.3.1
+
+- **Smooth panning over blurred layers again.** Panning at 100 % over a layer with a medium blur had
+  dropped below 60 frames a second in 0.3.0; it is back to full speed.
+- **A clearer taskbar icon.** The small icon is redrawn so the face reads at taskbar and title bar size.
+
+Known limits are those of 0.3.0, without the blur panning one.
+
 ## 0.3.0
 
 More of Photoshop: patterns, new adjustments and layer effects, CMYK pixel layers, and many selection,
