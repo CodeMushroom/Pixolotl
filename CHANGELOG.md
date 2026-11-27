@@ -3,6 +3,14 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.3.3
+
+- **Calmer snapping when you drag an object.** A dragged object holds the snap it found instead of hopping
+  back and forth between two targets close together. A slanted outline no longer pulls an object off a
+  line it is aligned to. Outlines now attract only the point you grabbed, not every corner of the object,
+  as in Illustrator. And alignment lines no longer appear for the midpoints of other objects' edges;
+  you can still snap a corner straight onto a midpoint.
+
 ## 0.3.2
 
 - **Panels that fold away, as in Illustrator.** The double arrow at the top of the panels (or Window >
