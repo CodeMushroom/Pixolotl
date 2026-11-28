@@ -49,6 +49,48 @@ exchanged, and shared without restriction" and "may not be altered, or sold
 without written permission of IDEAlliance". Documents that use it embed it
 unaltered.
 
+Procedural generators
+
+The procedural generators in crates/raster/src/generate are ported from
+the node definitions of Material Maker
+(https://github.com/RodZill4/material-maker), Copyright (c) 2018-present
+Rodolphe Suescun and contributors, under the MIT License. Two of those
+nodes carry code by Inigo Quilez under the MIT License, whose notices are
+kept in the ported source:
+
+  Voronoi (voronoi.mmg): "Based on https://www.shadertoy.com/view/ldl3W8
+  / The MIT License / Copyright © 2013 Inigo Quilez".
+  Voronoise (fbm2.mmg, fbm3.mmg): "MIT License Inigo Quilez -
+  https://www.shadertoy.com/view/Xd23Dh".
+
+Material Maker's license, which applies to the ported code:
+
+  MIT License
+
+  Copyright (c) 2018-present Rodolphe Suescun and contributors
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+The same permission notice covers Inigo Quilez's code under the MIT
+License, with his copyright line above.
+
 Trademarks
 
 "Pixolotl", "CodeMushroom" and the Pixolotl axolotl logo are trademarks of

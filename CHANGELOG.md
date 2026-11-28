@@ -3,6 +3,30 @@
 The section for a version becomes the "What's new" text of its release and of the in-app update notice.
 Keep entries short and written for users.
 
+## 0.4.0
+
+- **Procedural textures.** Layer > New Generator Layer adds noise, cells, shapes, blades, gradients, or
+  scattered stamps as a layer. Its settings are in Properties and update as you drag. A generator can
+  read another layer as a map, and it takes adjustments, filters, masks, and blend modes like any layer.
+- **Seamless tiles.** Turn on Tileable in the document's properties and blurs and other filters wrap
+  around the edges of artboard 1, so the result repeats without a seam. View > Tiled Preview shows it
+  repeated 2 × 2.
+- **PBR materials for games and 3D.** File > New has a Material preset: a square tile with a layer each
+  for base color, height, roughness, metallic, and emission. The normal and ambient occlusion maps are
+  made from the height. The Material Preview panel shows the lit result or any one map.
+- **Map-set export.** For a material, the Export panel writes the whole set as PNG or TIFF, 8 or 16 bits,
+  named and packed for Unity, Unreal Engine, Godot, or glTF, with OpenGL or DirectX normals. The same
+  export is on the command line: `pixolotl --export --material`.
+- **A tool interface for AI assistants.** `pixolotl-mcp.exe`, installed beside the app, lets a program
+  that speaks MCP build and export materials with Pixolotl's own commands. It runs only on your computer,
+  makes no network connection, contains no AI model, and reads and writes only in the folders you allow.
+  The app itself is unchanged by it. To use it, add it to your MCP client as a command, with
+  `--root <folder>` for each folder it may use.
+
+Files saved by this version use a newer format; older versions of Pixolotl cannot open them. Known
+limits: the preview is flat shading, not a 3D view. Exported map sets have not yet been tested inside a
+game engine. Dragging a setting on a generator that reads another layer can lag slightly.
+
 ## 0.3.3
 
 - **Calmer snapping when you drag an object.** A dragged object holds the snap it found instead of hopping
